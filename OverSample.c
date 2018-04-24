@@ -32,8 +32,9 @@ void DSP_OverSample_ISRCall(const uint32 ADCValue)
 {
 	static uint16_t PointCounter = OverSamplePoints;
 	static uint32_t PresentValueAccumulator = 0;
+	static uint16_t Dividend = OverSamplePoints >> 1;
 	
-	PresentValueAccumulator += (ADCValue / OverSamplePoints);
+	PresentValueAccumulator += (ADCValue / Dividend);
 	if(--PointCounter == 0)
 	{
 		PointCounter = OverSamplePoints;
